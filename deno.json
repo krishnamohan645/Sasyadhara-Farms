@@ -12,7 +12,8 @@
         "no-window",
         "no-window-prefix",
         "no-explicit-any",
-        "require-await"
+        "require-await",
+        "no-empty"
       ]
     }
   }

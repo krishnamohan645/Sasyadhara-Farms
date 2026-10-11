@@ -19,7 +19,9 @@ export default function OrderPage({
     try {
       const raw = sessionStorage.getItem(`order-${ref}`);
       if (raw) setOrder(JSON.parse(raw));
-    } catch {}
+    } catch {
+      // Ignore sessionStorage parsing errors
+    }
   }, [ref]);
 
   return (
