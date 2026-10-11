@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type * as THREE from "three";
 
 export function ThreeHeroCanvas() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,25 +14,26 @@ export function ThreeHeroCanvas() {
   useEffect(() => {
     if (!mounted) return;
     const container = containerRef.current;
-    if (!container || typeof window === "undefined") return;
+    if (!container || typeof globalThis === "undefined") return;
 
     // Check prefers-reduced-motion
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (globalThis.matchMedia && globalThis.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
     }
 
     let animationFrameId: number;
-    let renderer: any;
-    let scene: any;
-    let camera: any;
-    let geometry: any;
-    let material: any;
-    let texture: any;
+    let renderer: THREE.WebGLRenderer | undefined;
+    let scene: THREE.Scene | undefined;
+    let camera: THREE.PerspectiveCamera | undefined;
+    let geometry: THREE.BufferGeometry | undefined;
+    let material: THREE.PointsMaterial | undefined;
+    let texture: THREE.CanvasTexture | undefined;
 
-    import("three").then((THREE) => {
+    import("three").then((threeModule) => {
       if (!containerRef.current) return;
+      const THREE = threeModule;
 
-      const width = container.clientWidth || window.innerWidth;
+      const width = container.clientWidth || globalThis.innerWidth;
       const height = container.clientHeight || 560;
 
       scene = new THREE.Scene();
@@ -40,7 +42,7 @@ export function ThreeHeroCanvas() {
 
       renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
       renderer.setSize(width, height);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(globalThis.devicePixelRatio || 1, 2));
       container.appendChild(renderer.domElement);
 
       const particleCount = 80;
@@ -99,7 +101,7 @@ export function ThreeHeroCanvas() {
         targetY = y * 1.5;
       };
 
-      window.addEventListener("mousemove", handleMouseMove, { passive: true });
+      globalThis.addEventListener("mousemove", handleMouseMove, { passive: true });
 
       const handleResize = () => {
         if (!containerRef.current || !renderer || !camera) return;
@@ -110,7 +112,7 @@ export function ThreeHeroCanvas() {
         renderer.setSize(w, h);
       };
 
-      window.addEventListener("resize", handleResize);
+      globalThis.addEventListener("resize", handleResize);
 
       const clock = new THREE.Clock();
 
@@ -120,6 +122,8 @@ export function ThreeHeroCanvas() {
 
         mouseX += (targetX - mouseX) * 0.05;
         mouseY += (targetY - mouseY) * 0.05;
+
+        if (!renderer || !scene || !camera || !geometry) return;
 
         particles.rotation.y = elapsedTime * 0.03 + mouseX * 0.2;
         particles.rotation.x = Math.sin(elapsedTime * 0.02) * 0.08 + mouseY * 0.15;

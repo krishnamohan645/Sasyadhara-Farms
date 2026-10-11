@@ -1,0 +1,19 @@
+{
+  "lint": {
+    "include": ["src/"],
+    "exclude": [
+      ".next",
+      "node_modules",
+      "public",
+      "dist"
+    ],
+    "rules": {
+      "exclude": [
+        "no-window",
+        "no-window-prefix",
+        "no-explicit-any",
+        "require-await"
+      ]
+    }
+  }
+}

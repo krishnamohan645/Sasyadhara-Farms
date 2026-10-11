@@ -23,6 +23,7 @@ const schema = z.object({
 export type CreateOrderInput = z.infer<typeof schema>;
 
 export async function createOrder(input: unknown) {
+  await Promise.resolve();
   const data = schema.parse(input);
   const valid = data.lines.filter((l) => priceLine(l));
   if (valid.length === 0) throw new Error("No valid products in order");

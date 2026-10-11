@@ -1,6 +1,6 @@
 import { MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SITE, whatsappLink } from "@/lib/site-config";
+import { whatsappLink } from "@/lib/site-config";
 import handsJar from "@/assets/lifestyle-hands-jar.jpg";
 
 export function PromoBanner() {

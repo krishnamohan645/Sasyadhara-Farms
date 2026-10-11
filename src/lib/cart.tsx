@@ -28,7 +28,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     try {
       const raw = localStorage.getItem(KEY);
       if (raw) setLines(JSON.parse(raw));
-    } catch {}
+    } catch {
+      // Ignore localStorage read errors in SSR or restricted environments
+    }
     setLoaded(true);
   }, []);
   useEffect(() => {

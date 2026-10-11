@@ -8,8 +8,8 @@ import { NAV_LEFT, NAV_RIGHT } from "./Header";
 
 export function Footer() {
   const scrollToTop = () => {
-    if (typeof window !== "undefined") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+    if (typeof globalThis !== "undefined" && "scrollTo" in globalThis) {
+      globalThis.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 

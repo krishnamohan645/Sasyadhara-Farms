@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { MessageCircle, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SITE, whatsappOrderLink } from "@/lib/site-config";
+import { whatsappOrderLink } from "@/lib/site-config";
 import heroMustard from "@/assets/hero-mustard-pedestal.jpg";
 import heroGhee from "@/assets/hero-ghee-pedestal.jpg";
 import heroHoney from "@/assets/hero-honey-pedestal.jpg";

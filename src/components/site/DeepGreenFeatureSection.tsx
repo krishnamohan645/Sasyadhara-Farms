@@ -1,4 +1,4 @@
-import { MessageCircle, CheckCircle2, ShieldCheck, Sparkles, Truck, Droplets } from "lucide-react";
+import { MessageCircle, ShieldCheck, Sparkles, Truck, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE, whatsappLink } from "@/lib/site-config";
 import greenStage from "@/assets/green-feature-pedestal.jpg";

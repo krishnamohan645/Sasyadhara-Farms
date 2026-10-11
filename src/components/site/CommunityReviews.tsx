@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import lifestyle1 from "@/assets/lifestyle-oil-ritual.jpg";
 import lifestyle2 from "@/assets/lifestyle-ghee-pour.jpg";
 import lifestyle3 from "@/assets/lifestyle-hands-jar.jpg";

@@ -19,7 +19,9 @@ export default function ContactPage() {
     }
     setError("");
     const message = `*Inquiry: ${inquiryType}*\nName: ${form.name.trim()}\nPhone: ${form.phone.trim()}\nDetails / Items: ${form.items.trim() || "Interested in Sasyadhara Farm products"}`;
-    window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
+    if (typeof globalThis !== "undefined") {
+      globalThis.open(whatsappLink(message), "_blank", "noopener,noreferrer");
+    }
   };
 
   const contactMethods = [

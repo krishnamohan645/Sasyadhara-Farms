@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, MessageCircle, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,18 +17,8 @@ import { toast } from "sonner";
 
 export function FeaturedCarousel() {
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
   const { add } = useCart();
-
   const featured = PRODUCTS.slice(0, 8);
-
-  useEffect(() => {
-    if (!api) return;
-    setCurrent(api.selectedScrollSnap());
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
-    });
-  }, [api]);
 
   const handleAdd = (slug: string, variantId: string, name: string) => {
     add(slug, variantId, 1);

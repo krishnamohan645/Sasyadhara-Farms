@@ -1,16 +1,15 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { MessageCircle, Phone, Search, Truck, Check, Sparkles } from "lucide-react";
+import { MessageCircle, Phone, Check, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { OFFICIAL_PRICE_LIST, type Category, type PriceItem } from "@/lib/products";
+import { OFFICIAL_PRICE_LIST, type PriceItem } from "@/lib/products";
 import { SITE, formatINR, whatsappOrderLink, whatsappLink } from "@/lib/site-config";
 import { useCart } from "@/lib/cart";
 import { toast } from "sonner";
 
 export function PriceListSection() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
-  const [query, setQuery] = useState("");
   const { add } = useCart();
 
   const allItems = useMemo(() => {
@@ -22,15 +21,9 @@ export function PriceListSection() {
   }, []);
 
   const filteredItems = useMemo(() => {
-    return allItems.filter((item) => {
-      const matchCat = activeCategory === "all" || item.category === activeCategory;
-      const matchQ =
-        !query ||
-        item.name.toLowerCase().includes(query.toLowerCase()) ||
-        (item.teluguName && item.teluguName.toLowerCase().includes(query.toLowerCase()));
-      return matchCat && matchQ;
-    });
-  }, [allItems, activeCategory, query]);
+    if (activeCategory === "all") return allItems;
+    return allItems.filter((item) => item.category === activeCategory);
+  }, [allItems, activeCategory]);
 
   const handleQuickAdd = (item: PriceItem) => {
     const slugMap: Record<string, { slug: string; variantId: string }> = {
@@ -60,8 +53,8 @@ export function PriceListSection() {
     if (target) {
       add(target.slug, target.variantId, 1);
       toast.success(`Added ${item.name} (${item.size}) to cart`);
-    } else {
-      window.open(whatsappOrderLink(`${item.name} (${item.size})`, item.price), "_blank");
+    } else if (typeof globalThis !== "undefined") {
+      globalThis.open(whatsappOrderLink(`${item.name} (${item.size})`, item.price), "_blank");
     }
   };
 
