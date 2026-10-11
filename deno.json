@@ -14,7 +14,8 @@
         "no-window-prefix",
         "no-explicit-any",
         "require-await",
-        "no-empty"
+        "no-empty",
+        "no-sloppy-imports"
       ]
     }
   },
