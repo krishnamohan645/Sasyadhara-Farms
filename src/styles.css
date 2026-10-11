@@ -1,0 +1,196 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Mulish", system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-cream: var(--cream);
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --shadow-soft: var(--shadow-soft-v);
+  --shadow-lift: var(--shadow-lift-v);
+}
+
+:root {
+  --radius: 1rem;
+  /* Derived from the Sasyadhara logo: forest-green lettering, terracotta artwork, gold accents */
+  --background: oklch(0.975 0.018 85);
+  --foreground: oklch(0.27 0.035 150);
+  --cream: oklch(0.945 0.03 82);
+  --card: oklch(0.99 0.01 85);
+  --card-foreground: oklch(0.27 0.035 150);
+  --popover: oklch(0.99 0.01 85);
+  --popover-foreground: oklch(0.27 0.035 150);
+  --primary: oklch(0.38 0.06 160);
+  --primary-foreground: oklch(0.98 0.015 85);
+  --secondary: oklch(0.92 0.035 80);
+  --secondary-foreground: oklch(0.32 0.05 150);
+  --muted: oklch(0.935 0.022 82);
+  --muted-foreground: oklch(0.47 0.03 120);
+  --accent: oklch(0.66 0.15 50);
+  --accent-foreground: oklch(0.99 0.01 85);
+  --gold: oklch(0.7 0.11 85);
+  --gold-foreground: oklch(0.22 0.03 90);
+  --whatsapp: oklch(0.62 0.15 150);
+  --whatsapp-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.98 0.01 85);
+  --border: oklch(0.88 0.03 85);
+  --input: oklch(0.86 0.03 85);
+  --ring: oklch(0.66 0.15 50);
+  --shadow-soft-v: 0 6px 24px -12px oklch(0.38 0.06 160 / 0.25);
+  --shadow-lift-v: 0 22px 44px -18px oklch(0.38 0.06 160 / 0.35);
+  --gradient-hero: radial-gradient(ellipse at 80% 20%, oklch(0.93 0.07 90 / 0.8), transparent 55%),
+    radial-gradient(ellipse at 10% 90%, oklch(0.9 0.05 60 / 0.6), transparent 50%);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.975 0.018 85);
+  --sidebar-foreground: oklch(0.27 0.035 150);
+  --sidebar-primary: oklch(0.38 0.06 160);
+  --sidebar-primary-foreground: oklch(0.98 0.015 85);
+  --sidebar-accent: oklch(0.92 0.035 80);
+  --sidebar-accent-foreground: oklch(0.32 0.05 150);
+  --sidebar-border: oklch(0.88 0.03 85);
+  --sidebar-ring: oklch(0.66 0.15 50);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+@utility seed-texture {
+  background-image:
+    radial-gradient(circle at 1px 1px, oklch(0.7 0.11 85 / 0.18) 1.2px, transparent 0),
+    var(--gradient-hero);
+  background-size: 22px 22px, 100% 100%;
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(6deg); }
+}
+@keyframes pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.45); }
+  100% { transform: scale(1); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@utility animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+@utility animate-rise {
+  animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@utility animate-floaty {
+  animation: floaty 7s ease-in-out infinite;
+}
+@utility animate-pop {
+  animation: pop 0.45s ease-out;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
