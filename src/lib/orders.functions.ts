@@ -1,4 +1,5 @@
-import { createServerFn } from "@tanstack/react-start";
+"use server";
+
 import { z } from "zod";
 import { computeTotals, priceLine } from "./pricing";
 
@@ -19,17 +20,17 @@ const schema = z.object({
     .max(50),
 });
 
-/**
- * Prices are recalculated here on the server — never trusted from the browser.
- * Payments are NOT active (no gateway credentials yet): this only creates a
- * demo order reference with status "payment_pending".
- */
-export const createOrder = createServerFn({ method: "POST" })
-  .inputValidator((d: unknown) => schema.parse(d))
-  .handler(async ({ data }) => {
-    const valid = data.lines.filter((l) => priceLine(l));
-    if (valid.length === 0) throw new Error("No valid products in order");
-    const totals = computeTotals(valid);
-    const ref = "SF-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
-    return { ref, status: "payment_pending" as const, ...totals };
-  });
+export type CreateOrderInput = z.infer<typeof schema>;
+
+export async function createOrder(input: unknown) {
+  const data = schema.parse(input);
+  const valid = data.lines.filter((l) => priceLine(l));
+  if (valid.length === 0) throw new Error("No valid products in order");
+  const totals = computeTotals(valid);
+  const ref =
+    "SF-" +
+    Date.now().toString(36).toUpperCase() +
+    "-" +
+    Math.random().toString(36).slice(2, 6).toUpperCase();
+  return { ref, status: "payment_pending" as const, ...totals };
+}

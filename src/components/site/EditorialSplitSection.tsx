@@ -1,12 +1,15 @@
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import gheeJar from "@/assets/hero-ghee-pedestal.jpg";
 import lifestylePour from "@/assets/lifestyle-ghee-pour.jpg";
 import lifestyleOil from "@/assets/lifestyle-oil-ritual.jpg";
-import honeyJar from "@/assets/hero-honey-pedestal.jpg";
 
 export function EditorialSplitSection() {
+  const gheeJarSrc = typeof gheeJar === "string" ? gheeJar : (gheeJar as { src: string })?.src || gheeJar;
+  const lifestylePourSrc = typeof lifestylePour === "string" ? lifestylePour : (lifestylePour as { src: string })?.src || lifestylePour;
+  const lifestyleOilSrc = typeof lifestyleOil === "string" ? lifestyleOil : (lifestyleOil as { src: string })?.src || lifestyleOil;
+
   return (
     <>
       {/* 1. Organic Feature: Two Photos on Left + Copy on Right (Matches Reference Section 5) */}
@@ -18,7 +21,7 @@ export function EditorialSplitSection() {
               {/* Main Arched Frame */}
               <div className="relative w-[78%] aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-soft border border-[#E5DFD3] bg-[#EBE7DD]">
                 <img
-                  src={gheeJar}
+                  src={gheeJarSrc as string}
                   alt="Sasyadhara Farms Bilona Cow Ghee on limestone pedestal"
                   width={700}
                   height={850}
@@ -30,7 +33,7 @@ export function EditorialSplitSection() {
               {/* Circular floating inset on top left (Matches Reference Mockup) */}
               <div className="absolute -top-4 -left-2 sm:-left-4 w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-4 border-[#FAF7F2] shadow-lift bg-[#E8E3D7]">
                 <img
-                  src={lifestylePour}
+                  src={lifestylePourSrc as string}
                   alt="Golden ghee pouring ritual"
                   width={300}
                   height={300}
@@ -66,7 +69,7 @@ export function EditorialSplitSection() {
                   asChild
                   className="rounded-full bg-[#1D3528] px-8 py-6 text-sm font-bold text-white hover:bg-[#274737] shadow-sm hover:scale-105 transition-all"
                 >
-                  <Link to="/shop" search={{ category: "Pure Desi Ghee (Bilona)" }} className="flex items-center gap-2">
+                  <Link href="/shop?category=Pure+Desi+Ghee+(Bilona)" className="flex items-center gap-2">
                     <span>Shop Ghee Range</span>
                     <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -104,7 +107,7 @@ export function EditorialSplitSection() {
                   asChild
                   className="rounded-full bg-[#1D3528] px-8 py-6 text-sm font-bold text-white hover:bg-[#274737] shadow-sm hover:scale-105 transition-all"
                 >
-                  <Link to="/story" className="flex items-center gap-2">
+                  <Link href="/story" className="flex items-center gap-2">
                     <span>Our Story & Roots</span>
                     <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -116,7 +119,7 @@ export function EditorialSplitSection() {
             <div className="lg:col-span-6 flex justify-center order-1 lg:order-2">
               <div className="relative w-full max-w-[460px] aspect-[4/5] rounded-t-[12rem] rounded-b-3xl overflow-hidden shadow-soft border border-[#E5DFD3] bg-[#EBE7DD]">
                 <img
-                  src={lifestyleOil}
+                  src={lifestyleOilSrc as string}
                   alt="Customer holding fresh farm cold-pressed oil"
                   width={700}
                   height={850}

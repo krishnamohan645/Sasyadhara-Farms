@@ -1,5 +1,7 @@
-import { Link } from "@tanstack/react-router";
-import { Menu, ShoppingBag, Phone, MessageCircle, Search } from "lucide-react";
+"use client";
+
+import Link from "next/link";
+import { Menu, ShoppingBag, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useCart } from "@/lib/cart";
@@ -7,21 +9,21 @@ import { SITE, whatsappLink } from "@/lib/site-config";
 import { Logo } from "./Logo";
 
 export const NAV_LEFT = [
-  { to: "/shop", label: "Shop" },
-  { to: "/#price-list", label: "Price List" },
+  { href: "/shop", label: "Shop" },
+  { href: "/#price-list", label: "Price List" },
 ] as const;
 
 export const NAV_RIGHT = [
-  { to: "/story", label: "Our Story" },
-  { to: "/process", label: "Process" },
-  { to: "/contact", label: "Contact" },
+  { href: "/story", label: "Our Story" },
+  { href: "/process", label: "Process" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 function CartButton() {
   const { count, bump } = useCart();
   return (
     <Link
-      to="/cart"
+      href="/cart"
       aria-label={`Cart, ${count} items`}
       className="relative grid h-10 w-10 place-items-center rounded-full text-foreground hover:bg-black/5 transition"
     >
@@ -64,15 +66,15 @@ export function Header() {
         {/* Left Nav (Desktop) */}
         <nav aria-label="Main Left" className="hidden md:flex items-center gap-6 text-sm font-semibold tracking-wide text-foreground/80">
           {NAV_LEFT.map((n) => {
-            if (n.to.includes("#")) {
+            if (n.href.includes("#")) {
               return (
-                <a key={n.to} href={n.to} className="hover:text-[#1D3528] transition-colors">
+                <a key={n.href} href={n.href} className="hover:text-[#1D3528] transition-colors">
                   {n.label}
                 </a>
               );
             }
             return (
-              <Link key={n.to} to={n.to} className="hover:text-[#1D3528] transition-colors">
+              <Link key={n.href} href={n.href} className="hover:text-[#1D3528] transition-colors">
                 {n.label}
               </Link>
             );
@@ -80,7 +82,7 @@ export function Header() {
         </nav>
 
         {/* Center Circular Brand Emblem */}
-        <Link to="/" className="flex flex-col items-center group">
+        <Link href="/" className="flex flex-col items-center group">
           <Logo className="h-12 w-12 transition-transform duration-300 group-hover:scale-105" />
           <span className="font-display text-sm font-bold text-[#1D3528] tracking-widest uppercase mt-0.5">
             Sasyadhara
@@ -90,7 +92,7 @@ export function Header() {
         {/* Right Nav (Desktop) */}
         <nav aria-label="Main Right" className="hidden md:flex items-center gap-6 text-sm font-semibold tracking-wide text-foreground/80">
           {NAV_RIGHT.map((n) => (
-            <Link key={n.to} to={n.to} className="hover:text-[#1D3528] transition-colors">
+            <Link key={n.href} href={n.href} className="hover:text-[#1D3528] transition-colors">
               {n.label}
             </Link>
           ))}
@@ -127,11 +129,11 @@ export function Header() {
 
                 <nav aria-label="Mobile" className="mt-8 flex flex-col gap-2">
                   {[...NAV_LEFT, ...NAV_RIGHT].map((n) => {
-                    if (n.to.includes("#")) {
+                    if (n.href.includes("#")) {
                       return (
                         <a
-                          key={n.to}
-                          href={n.to}
+                          key={n.href}
+                          href={n.href}
                           onClick={() => setOpen(false)}
                           className="rounded-xl px-4 py-3 font-display text-lg text-foreground hover:bg-black/5"
                         >
@@ -141,8 +143,8 @@ export function Header() {
                     }
                     return (
                       <Link
-                        key={n.to}
-                        to={n.to}
+                        key={n.href}
+                        href={n.href}
                         onClick={() => setOpen(false)}
                         className="rounded-xl px-4 py-3 font-display text-lg text-foreground hover:bg-black/5"
                       >

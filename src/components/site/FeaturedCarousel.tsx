@@ -1,5 +1,7 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight, MessageCircle, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -84,8 +86,7 @@ export function FeaturedCarousel() {
                   <div className="group flex flex-col h-full rounded-3xl border border-border/70 bg-card p-4 transition-all duration-300 hover:shadow-soft hover:-translate-y-1">
                     {/* Image */}
                     <Link
-                      to="/shop/$slug"
-                      params={{ slug: p.slug }}
+                      href={`/shop/${p.slug}`}
                       className="relative block aspect-square overflow-hidden rounded-2xl bg-secondary/50"
                     >
                       <img
@@ -110,7 +111,7 @@ export function FeaturedCarousel() {
                           {p.category}
                         </span>
                         <h3 className="font-display text-lg font-bold text-primary mt-0.5 leading-snug line-clamp-1">
-                          <Link to="/shop/$slug" params={{ slug: p.slug }} className="hover:underline">
+                          <Link href={`/shop/${p.slug}`} className="hover:underline">
                             {p.name}
                           </Link>
                         </h3>

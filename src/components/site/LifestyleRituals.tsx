@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import lifestyleOil from "@/assets/lifestyle-oil-ritual.jpg";
 import lifestyleGhee from "@/assets/lifestyle-ghee-pour.jpg";
@@ -50,40 +50,42 @@ export function LifestyleRituals() {
 
         {/* 3 Arched Window Cards matching reference */}
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {RITUALS.map((ritual) => (
-            <div key={ritual.title} className="group flex flex-col items-center text-center">
-              {/* Arched Window Image Container */}
-              <div className="relative w-full aspect-[3/4] rounded-t-[10rem] rounded-b-3xl overflow-hidden shadow-soft bg-[#EDE8DD] border border-[#E5DFD3] transition-transform duration-500 group-hover:-translate-y-1">
-                <img
-                  src={ritual.image}
-                  alt={ritual.alt}
-                  width={600}
-                  height={800}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
+          {RITUALS.map((ritual) => {
+            const imgSrc = typeof ritual.image === "string" ? ritual.image : (ritual.image as { src: string })?.src || ritual.image;
+            return (
+              <div key={ritual.title} className="group flex flex-col items-center text-center">
+                {/* Arched Window Image Container */}
+                <div className="relative w-full aspect-[3/4] rounded-t-[10rem] rounded-b-3xl overflow-hidden shadow-soft bg-[#EDE8DD] border border-[#E5DFD3] transition-transform duration-500 group-hover:-translate-y-1">
+                  <img
+                    src={imgSrc as string}
+                    alt={ritual.alt}
+                    width={600}
+                    height={800}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
 
-              {/* Pill Button below the arch */}
-              <div className="mt-6">
-                <Link
-                  to="/shop"
-                  search={{ category: ritual.category }}
-                  className="inline-flex items-center gap-2 rounded-full bg-white border border-[#1D3528]/20 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-[#1D3528] shadow-xs hover:bg-[#1D3528] hover:text-white transition-all hover:scale-105"
-                >
-                  <span>{ritual.linkText}</span>
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
-              </div>
+                {/* Pill Button below the arch */}
+                <div className="mt-6">
+                  <Link
+                    href={`/shop?category=${encodeURIComponent(ritual.category)}`}
+                    className="inline-flex items-center gap-2 rounded-full bg-white border border-[#1D3528]/20 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-[#1D3528] shadow-xs hover:bg-[#1D3528] hover:text-white transition-all hover:scale-105"
+                  >
+                    <span>{ritual.linkText}</span>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
 
-              <h3 className="font-display text-xl font-bold text-[#1D3528] mt-3">
-                {ritual.title}
-              </h3>
-              <p className="text-xs text-muted-foreground mt-1 max-w-xs leading-relaxed">
-                {ritual.description}
-              </p>
-            </div>
-          ))}
+                <h3 className="font-display text-xl font-bold text-[#1D3528] mt-3">
+                  {ritual.title}
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1 max-w-xs leading-relaxed">
+                  {ritual.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

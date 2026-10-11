@@ -1,10 +1,14 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Policy, policyHead } from "@/components/site/Policy";
-import { SITE, SHIPPING_POLICY } from "@/lib/site-config";
+import type { Metadata } from "next";
+import { Policy } from "@/components/site/Policy";
+import { SITE } from "@/lib/site-config";
 
-export const Route = createFileRoute("/shipping")({
-  head: () => policyHead("Shipping & Delivery Policy", "Doorstep shipping and delivery charges policy for Sasyadhara Farms orders."),
-  component: () => (
+export const metadata: Metadata = {
+  title: "Shipping & Delivery Policy — Sasyadhara Farms",
+  description: "Doorstep shipping and delivery charges policy for Sasyadhara Farms orders.",
+};
+
+export default function ShippingPage() {
+  return (
     <Policy
       title="Shipping & Delivery Policy"
       sections={[
@@ -26,5 +30,5 @@ export const Route = createFileRoute("/shipping")({
         },
       ]}
     />
-  ),
-});
+  );
+}

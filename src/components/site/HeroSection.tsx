@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { MessageCircle, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -75,7 +77,7 @@ export function HeroSection() {
       {/* Authentic Sunlit Organic Farm Photographic Background */}
       <div
         className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBg})` }}
+        style={{ backgroundImage: `url(${typeof heroBg === "string" ? heroBg : (heroBg as { src: string })?.src || heroBg})` }}
         aria-hidden="true"
       />
 
@@ -194,7 +196,7 @@ export function HeroSection() {
             <div className="relative w-full max-w-[460px] aspect-square rounded-[2.5rem] overflow-hidden shadow-lift border border-[#E5DFD3] bg-[#EBE7DD]/40">
               <img
                 key={slide.id}
-                src={slide.image}
+                src={(typeof slide.image === "string" ? slide.image : (slide.image as { src: string })?.src) as string}
                 alt={slide.alt}
                 width={900}
                 height={900}

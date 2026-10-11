@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import type { Metadata } from "next";
 import { HeroSection } from "@/components/site/HeroSection";
 import { MarqueeRibbon } from "@/components/site/MarqueeRibbon";
 import { LifestyleRituals } from "@/components/site/LifestyleRituals";
@@ -11,28 +11,13 @@ import { PromoBanner } from "@/components/site/PromoBanner";
 import { BlogSection } from "@/components/site/BlogSection";
 import { SocialStrip } from "@/components/site/SocialStrip";
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Sasyadhara Farms — Wood Pressed Oils, Vedic Bilona Ghee & Organic Foods, Bangalore" },
-      {
-        name: "description",
-        content:
-          "Buy authentic cold wood pressed oils, Vedic bilona desi cow ghee, raw wild honey, and chemical-free jaggery from Sasyadhara Farms, KR Puram, Bangalore. Order on WhatsApp: 9866125836 / 8618717644.",
-      },
-      { property: "og:title", content: "Sasyadhara Farms — Purity Rooted in Tradition" },
-      {
-        property: "og:description",
-        content: "Traditional cold wood pressed oils and Vedic bilona desi ghee from KR Puram, Bangalore.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: Index,
-});
+export const metadata: Metadata = {
+  title: "Sasyadhara Farms — Wood Pressed Oils, Vedic Bilona Ghee & Organic Foods, Bangalore",
+  description:
+    "Buy authentic cold wood pressed oils, Vedic bilona desi cow ghee, raw wild honey, and chemical-free jaggery from Sasyadhara Farms, KR Puram, Bangalore. Order on WhatsApp: 9866125836 / 8618717644.",
+};
 
-function Index() {
+export default function HomePage() {
   return (
     <div className="bg-[#FAF7F2] min-h-screen text-foreground">
       {/* 1. Hero Section: Editorial Headline + Pedestal & Arch Visual */}

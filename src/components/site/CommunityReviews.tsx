@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import lifestyle1 from "@/assets/lifestyle-oil-ritual.jpg";
@@ -30,31 +32,36 @@ const REVIEWS = [
     name: "Meera Venkatesh",
     location: "KR Puram, Bangalore",
     rating: 5,
-    title: "Local Farm Store Purity You Can Trust",
+    title: "Raw Wild Honey & Chemical-Free Jaggery",
     quote:
-      "Visiting their KR Puram store was reassuring. You can actually see the wood presses in operation. Their raw wild honey and organic jaggery are staple items in our breakfast table now.",
+      "We visited their physical store in KR Puram. The transparency is wonderful! You can see the wooden presses operating. The raw honey and palm jaggery are now household staples for our morning tea.",
     image: lifestyle3,
   },
 ];
 
 export function CommunityReviews() {
   const [activeIdx, setActiveIdx] = useState(0);
-  const rev = REVIEWS[activeIdx];
 
   const next = () => setActiveIdx((prev) => (prev + 1) % REVIEWS.length);
   const prev = () => setActiveIdx((prev) => (prev - 1 + REVIEWS.length) % REVIEWS.length);
 
+  const rev = REVIEWS[activeIdx];
+  const imgSrc = typeof rev.image === "string" ? rev.image : (rev.image as { src: string })?.src || rev.image;
+
   return (
-    <section className="bg-[#FAF7F2] py-20 lg:py-28 border-b border-[#E8E2D5]">
-      <div className="mx-auto max-w-5xl px-4 sm:px-8">
-        {/* Section Heading matching reference */}
-        <div className="text-center mb-12">
+    <section className="bg-[#FAF7F2] py-20 lg:py-28 border-b border-[#E8E2D5] overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8">
+        {/* Section Heading */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
           <p className="text-xs font-bold uppercase tracking-widest text-[#1D3528]/70">
-            ✦ TRUSTED BY BANGALORE FAMILIES ✦
+            ✦ Real Families, Real Purity ✦
           </p>
           <h2 className="font-display text-3xl sm:text-5xl font-bold text-[#1D3528] mt-2 tracking-tight">
             From Our Community
           </h2>
+          <p className="text-sm sm:text-base text-muted-foreground mt-3">
+            Honest experiences from families across Bangalore who transformed their kitchens with Sasyadhara.
+          </p>
         </div>
 
         {/* Review Box */}
@@ -63,7 +70,7 @@ export function CommunityReviews() {
           <div className="md:col-span-5 flex justify-center">
             <div className="relative w-full max-w-[320px] aspect-[4/5] rounded-3xl overflow-hidden shadow-soft border border-[#E5DFD3] bg-[#E8E3D7]">
               <img
-                src={rev.image}
+                src={imgSrc as string}
                 alt={rev.name}
                 width={500}
                 height={600}

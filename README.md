@@ -14,7 +14,7 @@
 - 🧈 **Vedic A2 Bilona Cow Ghee:** Hand-churned from cultured curd using bi-directional wooden churners.
 - 🍯 **Raw Wild Honey & Organic Sweeteners:** Pure nectar, natural palm & sugarcane jaggery.
 - 📦 **Direct Doorstep Delivery:** Flexible ordering with real-time cart calculations and instant WhatsApp checkout.
-- ⚡ **High-Performance SSR Architecture:** Powered by TanStack Start, React 19, and Tailwind CSS.
+- ⚡ **High-Performance SSR Architecture:** Powered by Next.js 16 (App Router), React 19, and Tailwind CSS v4.
 
 ---
 
@@ -22,13 +22,12 @@
 
 | Technology | Purpose |
 | :--- | :--- |
-| **React 19** | Modern UI components and concurrent rendering |
-| **TanStack Start** | Full-stack SSR framework with file-based routing |
-| **TanStack Router** | Type-safe client and server-side navigation |
+| **Next.js 16 (App Router)** | Modern full-stack React framework with server components and SSR |
+| **React 19** | Concurrent rendering, server actions, and hooks |
 | **Tailwind CSS v4** | Custom theme design tokens, fluid typography, and responsive layouts |
 | **Lucide React** | Clean, accessible iconography |
 | **Sonner** | Interactive toast notifications |
-| **Vite 8** | Ultra-fast module bundling and hot module replacement |
+| **TypeScript** | Strict type safety across components and catalogues |
 
 ---
 
@@ -54,7 +53,7 @@ Start the development server:
 npm run dev
 ```
 
-Open [http://localhost:8080](http://localhost:8080) in your browser.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Building for Production
 To create an optimized production build:
@@ -63,10 +62,10 @@ To create an optimized production build:
 npm run build
 ```
 
-To preview the production build locally:
+To run the production server locally:
 
 ```bash
-npm run preview
+npm run start
 ```
 
 ---
@@ -76,6 +75,16 @@ npm run preview
 ```
 ├── public/                 # Static assets, favicons, manifests
 ├── src/
+│   ├── app/                # Next.js App Router pages & layouts
+│   │   ├── layout.tsx      # Root HTML shell, providers, Header & Footer
+│   │   ├── page.tsx        # Homepage (Hero, Best Sellers, Price List, Rituals)
+│   │   ├── story/          # Our Story & philosophy
+│   │   ├── process/        # Traditional Wood-Pressed extraction methodology
+│   │   ├── shop/           # Complete filterable product catalogue & slug pages
+│   │   ├── cart/           # Cart overview & item stepper
+│   │   ├── checkout/       # Delivery details & order creation
+│   │   ├── order/          # Order confirmation & WhatsApp share
+│   │   └── contact/        # Farm locations, direct inquiry & WhatsApp contact
 │   ├── assets/             # Brand images, packshots, farm photos
 │   ├── components/
 │   │   ├── site/           # Storefront sections (Header, Hero, Footer, Shared)
@@ -83,15 +92,9 @@ npm run preview
 │   ├── data/
 │   │   └── products.ts     # Curated catalogue, pricing & specifications
 │   ├── lib/                # Cart context, WhatsApp generators, utilities
-│   ├── routes/             # TanStack Router pages
-│   │   ├── __root.tsx      # Root layout, HTML shell, global providers
-│   │   ├── index.tsx       # Homepage (Hero, Best Sellers, Price List, Rituals)
-│   │   ├── story.tsx       # Our Story & philosophy
-│   │   ├── process.tsx     # Traditional Wood-Pressed extraction methodology
-│   │   ├── products.tsx    # Complete filterable product catalogue
-│   │   └── contact.tsx     # Farm locations, direct inquiry & WhatsApp contact
 │   └── styles.css          # Design system variables and typography
-└── vite.config.ts          # Vite bundler configuration
+├── next.config.ts          # Next.js bundler configuration
+└── postcss.config.mjs      # PostCSS Tailwind CSS v4 configuration
 ```
 
 ---

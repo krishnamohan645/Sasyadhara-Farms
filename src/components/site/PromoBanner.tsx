@@ -11,7 +11,7 @@ export function PromoBanner() {
           {/* Left Visual */}
           <div className="md:col-span-5 h-64 md:h-full relative overflow-hidden">
             <img
-              src={handsJar}
+              src={(typeof handsJar === "string" ? handsJar : (handsJar as { src: string })?.src) as string}
               alt="Hands holding artisanal pure honey jar"
               width={600}
               height={500}

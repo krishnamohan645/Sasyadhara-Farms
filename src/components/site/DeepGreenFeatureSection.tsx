@@ -49,7 +49,7 @@ export function DeepGreenFeatureSection() {
           <div className="lg:col-span-6 flex justify-center">
             <div className="relative w-full max-w-[460px] aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10">
               <img
-                src={greenStage}
+                src={(typeof greenStage === "string" ? greenStage : (greenStage as { src: string })?.src) as string}
                 alt="Wood Pressed Oil on rough limestone pedestal with palm leaves against deep forest green background"
                 width={800}
                 height={800}

@@ -1,36 +1,25 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { MessageCircle, Phone, Sparkles, Heart, ShieldCheck, Sprout, ArrowRight, MapPin } from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { MessageCircle, Sparkles, Heart, ShieldCheck, Sprout, ArrowRight, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
 import { Logo } from "@/components/site/Logo";
-import { SITE, whatsappLink } from "@/lib/site-config";
+import { whatsappLink } from "@/lib/site-config";
 import lifestyleOil from "@/assets/lifestyle-oil-ritual.jpg";
 import lifestyleGhee from "@/assets/lifestyle-ghee-pour.jpg";
 import lifestyleHoney from "@/assets/lifestyle-hands-jar.jpg";
-import heroMustard from "@/assets/hero-mustard-pedestal.jpg";
 
-export const Route = createFileRoute("/story")({
-  head: () => ({
-    meta: [
-      { title: "Our Story — Sasyadhara Farms | Purity Rooted in Tradition" },
-      {
-        name: "description",
-        content:
-          "Discover the story of Sasyadhara Farms, KR Puram, Bangalore. Reviving cold wood-pressed Mara Chekku oils, Vedic Bilona desi ghee, and pure farmer-sourced staples.",
-      },
-      { property: "og:title", content: "Our Story — Sasyadhara Farms" },
-      {
-        property: "og:description",
-        content: "Reviving traditional wood pressed oils and Vedic Bilona cow ghee in Bangalore.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: StoryPage,
-});
+export const metadata: Metadata = {
+  title: "Our Story — Sasyadhara Farms | Purity Rooted in Tradition",
+  description:
+    "Discover the story of Sasyadhara Farms, KR Puram, Bangalore. Reviving cold wood-pressed Mara Chekku oils, Vedic Bilona desi ghee, and pure farmer-sourced staples.",
+};
 
-function StoryPage() {
+export default function StoryPage() {
+  const lifestyleOilSrc = typeof lifestyleOil === "string" ? lifestyleOil : (lifestyleOil as { src: string })?.src || lifestyleOil;
+  const lifestyleGheeSrc = typeof lifestyleGhee === "string" ? lifestyleGhee : (lifestyleGhee as { src: string })?.src || lifestyleGhee;
+  const lifestyleHoneySrc = typeof lifestyleHoney === "string" ? lifestyleHoney : (lifestyleHoney as { src: string })?.src || lifestyleHoney;
+
   const pillars = [
     {
       icon: Sprout,
@@ -62,7 +51,8 @@ function StoryPage() {
         <div
           className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 h-[450px] w-[700px] rounded-full blur-3xl opacity-40"
           style={{
-            background: "radial-gradient(circle, rgba(212, 178, 118, 0.35) 0%, rgba(209, 224, 203, 0.2) 50%, transparent 75%)",
+            background:
+              "radial-gradient(circle, rgba(212, 178, 118, 0.35) 0%, rgba(209, 224, 203, 0.2) 50%, transparent 75%)",
           }}
           aria-hidden="true"
         />
@@ -190,7 +180,7 @@ function StoryPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="group relative aspect-[4/5] rounded-3xl overflow-hidden shadow-soft border border-[#E5DFD3] bg-[#EBE7DD]">
               <img
-                src={lifestyleOil}
+                src={lifestyleOilSrc as string}
                 alt="Cold pressed cooking oil morning ritual"
                 width={600}
                 height={750}
@@ -206,7 +196,7 @@ function StoryPage() {
 
             <div className="group relative aspect-[4/5] rounded-3xl overflow-hidden shadow-soft border border-[#E5DFD3] bg-[#EBE7DD]">
               <img
-                src={lifestyleGhee}
+                src={lifestyleGheeSrc as string}
                 alt="Golden Vedic bilona cow ghee pouring ritual"
                 width={600}
                 height={750}
@@ -222,7 +212,7 @@ function StoryPage() {
 
             <div className="group relative aspect-[4/5] rounded-3xl overflow-hidden shadow-soft border border-[#E5DFD3] bg-[#EBE7DD]">
               <img
-                src={lifestyleHoney}
+                src={lifestyleHoneySrc as string}
                 alt="Hands holding raw wild apiary honey jar"
                 width={600}
                 height={750}
@@ -261,7 +251,7 @@ function StoryPage() {
               size="lg"
               className="rounded-full bg-[#1D3528] text-white px-8 py-6 text-sm font-bold hover:bg-[#274737] shadow-sm hover:scale-105 transition-all"
             >
-              <Link to="/shop" className="flex items-center gap-2">
+              <Link href="/shop" className="flex items-center gap-2">
                 <span>Explore Products</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
@@ -273,7 +263,7 @@ function StoryPage() {
               size="lg"
               className="rounded-full border-[#1D3528]/30 px-6 py-6 text-sm font-semibold text-[#1D3528] hover:bg-[#1D3528]/5"
             >
-              <Link to="/process">
+              <Link href="/process">
                 <span>Our Extraction Process</span>
               </Link>
             </Button>

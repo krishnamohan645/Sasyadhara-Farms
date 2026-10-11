@@ -1,5 +1,7 @@
-import { Link } from "@tanstack/react-router";
-import { Phone, MessageCircle, MapPin, Clock, Instagram, Facebook, ArrowUp } from "lucide-react";
+"use client";
+
+import Link from "next/link";
+import { Phone, MessageCircle, MapPin, Clock, Instagram, Facebook } from "lucide-react";
 import { SITE, whatsappLink } from "@/lib/site-config";
 import { Logo } from "./Logo";
 import { NAV_LEFT, NAV_RIGHT } from "./Header";
@@ -22,30 +24,30 @@ export function Footer() {
             </h3>
             <ul className="mt-4 space-y-2.5 text-xs sm:text-sm text-[#D0DED4]">
               {NAV_LEFT.map((n) => (
-                <li key={n.to}>
-                  {n.to.includes("#") ? (
-                    <a href={n.to} className="hover:text-white transition-colors">
+                <li key={n.href}>
+                  {n.href.includes("#") ? (
+                    <a href={n.href} className="hover:text-white transition-colors">
                       {n.label}
                     </a>
                   ) : (
-                    <Link to={n.to} className="hover:text-white transition-colors">
+                    <Link href={n.href} className="hover:text-white transition-colors">
                       {n.label}
                     </Link>
                   )}
                 </li>
               ))}
               <li>
-                <Link to="/shop" search={{ category: "Wood Pressed Oils" }} className="hover:text-white transition-colors">
+                <Link href="/shop?category=Wood+Pressed+Oils" className="hover:text-white transition-colors">
                   Wood Pressed Oils
                 </Link>
               </li>
               <li>
-                <Link to="/shop" search={{ category: "Pure Desi Ghee (Bilona)" }} className="hover:text-white transition-colors">
+                <Link href="/shop?category=Pure+Desi+Ghee+(Bilona)" className="hover:text-white transition-colors">
                   Vedic Bilona Ghee
                 </Link>
               </li>
               <li>
-                <Link to="/shop" search={{ category: "Organic Jaggery & Honey" }} className="hover:text-white transition-colors">
+                <Link href="/shop?category=Organic+Jaggery+%26+Honey" className="hover:text-white transition-colors">
                   Raw Wild Honey & Jaggery
                 </Link>
               </li>
@@ -59,8 +61,8 @@ export function Footer() {
             </h3>
             <ul className="mt-4 space-y-2.5 text-xs sm:text-sm text-[#D0DED4]">
               {NAV_RIGHT.map((n) => (
-                <li key={n.to}>
-                  <Link to={n.to} className="hover:text-white transition-colors">
+                <li key={n.href}>
+                  <Link href={n.href} className="hover:text-white transition-colors">
                     {n.label}
                   </Link>
                 </li>
@@ -80,22 +82,22 @@ export function Footer() {
             </h3>
             <ul className="mt-4 space-y-2.5 text-xs sm:text-sm text-[#D0DED4]">
               <li>
-                <Link to="/shipping" className="hover:text-white transition-colors font-medium">
+                <Link href="/shipping" className="hover:text-white transition-colors font-medium">
                   Shipping Terms (Free &lt; 5km)
                 </Link>
               </li>
               <li>
-                <Link to="/returns" className="hover:text-white transition-colors">
+                <Link href="/returns" className="hover:text-white transition-colors">
                   Returns & Refunds Policy
                 </Link>
               </li>
               <li>
-                <Link to="/privacy" className="hover:text-white transition-colors">
+                <Link href="/privacy" className="hover:text-white transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="hover:text-white transition-colors">
+                <Link href="/terms" className="hover:text-white transition-colors">
                   Terms & Conditions
                 </Link>
               </li>

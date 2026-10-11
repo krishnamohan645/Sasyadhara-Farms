@@ -11,6 +11,8 @@ import lipbalm from "@/assets/packshot-lipbalm.png";
 import millets from "@/assets/millets.jpg";
 import snacks from "@/assets/millet-snacks.jpg";
 
+const getImgSrc = (img: string | { src: string }) => (typeof img === "string" ? img : img.src);
+
 export type Category =
   | "Wood Pressed Oils"
   | "Pure Desi Ghee (Bilona)"
@@ -131,7 +133,7 @@ export const PRODUCTS: Product[] = [
     short: "Traditional cold wood pressed mustard oil with rich aroma and natural pungency.",
     description:
       "Crafted at Sasyadhara Farms using traditional wooden mara chekku presses. Extracted at room temperature to retain all natural antioxidants, omega fatty acids, and authentic mustard zest.",
-    image: mustard,
+    image: getImgSrc(mustard),
     variants: [
       { id: "1l", label: "1 Litre", price: 410 },
       { id: "500ml", label: "500 ml", price: 215 },
@@ -151,7 +153,7 @@ export const PRODUCTS: Product[] = [
     short: "Pure peanut oil cold-extracted for aromatic, wholesome everyday cooking.",
     description:
       "Made from farm-fresh premium groundnuts using traditional wooden presses. Offers a clean, nutty aroma, rich vitamin E content, and high smoke point ideal for traditional Indian kitchens.",
-    image: groundnut,
+    image: getImgSrc(groundnut),
     variants: [
       { id: "1l", label: "1 Litre", price: 420 },
       { id: "500ml", label: "500 ml", price: 220 },
@@ -170,7 +172,7 @@ export const PRODUCTS: Product[] = [
     short: "Light, golden, heart-friendly sunflower oil naturally extracted.",
     description:
       "Slow-pressed sunflower seeds producing a gentle golden oil packed with natural vitamin E and healthy unsaturated fats, perfect for everyday curries and sautéing.",
-    image: sunflower,
+    image: getImgSrc(sunflower),
     variants: [{ id: "1l", label: "1 Litre", price: 450 }],
     inStock: true,
   },
@@ -181,7 +183,7 @@ export const PRODUCTS: Product[] = [
     short: "Nutrient-rich gingelly oil pressed from premium white sesame seeds.",
     description:
       "Traditional South Indian sesame (til/gingelly) oil pressed slowly with wooden pestle. Revered in Ayurveda for deep nourishment, bone health, and culinary flavor.",
-    image: sesame,
+    image: getImgSrc(sesame),
     variants: [{ id: "1l", label: "1 Litre", price: 560 }],
     inStock: true,
   },
@@ -192,7 +194,7 @@ export const PRODUCTS: Product[] = [
     short: "Intense, nutrient-dense oil from heritage black sesame seeds.",
     description:
       "Rich in calcium, zinc, and antioxidants. Extracted cold in wooden chekku presses for traditional herbal uses, cooking, and holistic wellness.",
-    image: sesame,
+    image: getImgSrc(sesame),
     variants: [{ id: "1l", label: "1 Litre", price: 560 }],
     inStock: true,
   },
@@ -203,7 +205,7 @@ export const PRODUCTS: Product[] = [
     short: "Aromatic raw coconut oil pressed from sun-dried natural copra.",
     description:
       "Fragrant, pure, unrefined coconut oil extracted without bleaching or high heat. Ideal for coastal culinary dishes, hair nourishment, and body massage.",
-    image: coconut,
+    image: getImgSrc(coconut),
     variants: [{ id: "1l", label: "1 Litre", price: 650 }],
     inStock: true,
   },
@@ -215,7 +217,7 @@ export const PRODUCTS: Product[] = [
     short: "Heritage Kusuma oil prized for heart health and light flavor.",
     description:
       "Cold-extracted Safflower (Kusuma) oil rich in oleic acid and omega-6. Known to support healthy cholesterol levels and optimal cardiovascular vitality.",
-    image: mustard,
+    image: getImgSrc(mustard),
     variants: [{ id: "1l", label: "1 Litre", price: 550 }],
     inStock: true,
   },
@@ -227,7 +229,7 @@ export const PRODUCTS: Product[] = [
     short: "Rare traditional Verri Nuvvulu oil cold pressed with immense medicinal value.",
     description:
       "Authentic Niger seed (Verri Nuvvulu) oil traditionally cherished in Telugu & Deccan cuisines for unique deep flavor and anti-inflammatory properties.",
-    image: mustard,
+    image: getImgSrc(mustard),
     variants: [{ id: "1l", label: "1 Litre", price: 950 }],
     inStock: true,
   },
@@ -239,7 +241,7 @@ export const PRODUCTS: Product[] = [
     short: "Artisanal A2 Cow Ghee prepared using traditional Vedic Bilona curd-churning.",
     description:
       "Prepared following the authentic Vedic 5-step process: Whole cow milk is boiled, cultured into curd, churned with wooden bilona to yield makkhan, and slowly hand-simmered into golden, aromatic, granular desi ghee.",
-    image: bilonaGhee,
+    image: getImgSrc(bilonaGhee),
     variants: [
       { id: "500ml", label: "500 ml", price: 800 },
       { id: "250ml", label: "250 ml", price: 420 },
@@ -259,7 +261,7 @@ export const PRODUCTS: Product[] = [
     short: "Rich, dense, traditional bilona buffalo ghee with high smoke point and deep taste.",
     description:
       "Churned from fresh cultured buffalo curd using the authentic wooden bilona method. Dense granular texture and creamy taste, perfect for festive sweets and hearty dishes.",
-    image: bilonaGhee,
+    image: getImgSrc(bilonaGhee),
     variants: [
       { id: "500ml", label: "500 ml", price: 850 },
       { id: "250ml", label: "250 ml", price: 440 },
@@ -274,7 +276,7 @@ export const PRODUCTS: Product[] = [
     short: "Chemical-free, naturally prepared solid jaggery cubes.",
     description:
       "Pure sugarcane juice naturally clarified using plant extracts without artificial bleaching agents or sulphur. Sweet, wholesome, rich in iron and minerals.",
-    image: jaggery,
+    image: getImgSrc(jaggery),
     variants: [{ id: "1kg", label: "1 KG", price: 120 }],
     inStock: true,
   },
@@ -285,7 +287,7 @@ export const PRODUCTS: Product[] = [
     short: "Fine unrefined golden jaggery powder for tea, baking, and sweets.",
     description:
       "Natural alternative to white refined sugar. Dissolves easily into daily chai, coffee, and desserts while infusing rich iron and micronutrients.",
-    image: jaggery,
+    image: getImgSrc(jaggery),
     variants: [{ id: "1kg", label: "1 KG", price: 150 }],
     inStock: true,
   },
@@ -297,7 +299,7 @@ export const PRODUCTS: Product[] = [
     short: "100% pure unprocessed wild apiary honey straight from nature.",
     description:
       "Raw unpasteurised honey loaded with beneficial natural enzymes, bee pollen, and soothing antioxidants. No added corn syrups or artificial sugars.",
-    image: honey,
+    image: getImgSrc(honey),
     variants: [
       { id: "500g", label: "500 gms", price: 500 },
       { id: "250g", label: "250 gms", price: 250 },
@@ -311,7 +313,7 @@ export const PRODUCTS: Product[] = [
     short: "Shade-dried natural drumstick leaf powder packed with multivitamins and iron.",
     description:
       "Known as the miracle tree, our moringa leaves are hand-picked, shade-dried, and finely stone-ground to preserve heat-sensitive vitamins and antioxidants.",
-    image: superfoods,
+    image: getImgSrc(superfoods),
     variants: [{ id: "100g", label: "100 gms", price: 160 }],
     inStock: true,
   },
@@ -323,7 +325,7 @@ export const PRODUCTS: Product[] = [
     short: "Vibrant blend of Amla, Beetroot, and Carrot for radiant skin and hemoglobin boost.",
     description:
       "A potent daily superfood powder combining the vitamin C of fresh gooseberry (amla), the iron of beetroot, and the beta-carotene of carrot. Mix with warm water, juices, or smoothies.",
-    image: superfoods,
+    image: getImgSrc(superfoods),
     variants: [{ id: "100g", label: "100 gms", price: 180 }],
     inStock: true,
   },
@@ -335,7 +337,7 @@ export const PRODUCTS: Product[] = [
     short: "Nourishing botanical lip balms infused with pure extracts and natural beeswax.",
     description:
       "Chemical-free botanical lip care handcrafted with cold pressed oils, natural beeswax, and pure floral/vegetable botanical extracts for long-lasting hydration.",
-    image: lipbalm,
+    image: getImgSrc(lipbalm),
     variants: [
       { id: "beetroot", label: "Beetroot Lipbalm (15g)", price: 200 },
       { id: "rose", label: "Rose Lipbalm (15g)", price: 200 },
@@ -349,7 +351,7 @@ export const PRODUCTS: Product[] = [
     short: "Directly farmer-sourced unpolished millets and traditional pulses.",
     description:
       "Rich in dietary fibre and plant proteins. Direct farmer procurement ensures freshness, authentic taste, and fair value for our farming community.",
-    image: millets,
+    image: getImgSrc(millets),
     variants: [
       { id: "1kg", label: "1 kg", price: 180 },
       { id: "2kg", label: "2 kg", price: 340 },
@@ -363,7 +365,7 @@ export const PRODUCTS: Product[] = [
     short: "Crispy, guilt-free tea-time snacks prepared with millets and cold pressed oils.",
     description:
       "Crafted with love using traditional household recipes. Zero refined flour (maida), zero palm oil, fried exclusively in wood pressed oils.",
-    image: snacks,
+    image: getImgSrc(snacks),
     variants: [{ id: "250g", label: "250 g", price: 150 }],
     inStock: true,
   },

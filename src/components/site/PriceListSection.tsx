@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useMemo } from "react";
 import { MessageCircle, Phone, Search, Truck, Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";

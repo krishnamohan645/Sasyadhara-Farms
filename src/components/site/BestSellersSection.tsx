@@ -1,4 +1,6 @@
-import { Link } from "@tanstack/react-router";
+"use client";
+
+import Link from "next/link";
 import { MessageCircle, Star, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PRODUCTS } from "@/lib/products";
@@ -8,7 +10,7 @@ import { toast } from "sonner";
 
 export function BestSellersSection() {
   const { add } = useCart();
-  
+
   // 4 iconic bestsellers across distinct categories matching reference layout
   const BESTSELLER_SLUGS = [
     "groundnut-oil",
@@ -40,7 +42,7 @@ export function BestSellersSection() {
           </div>
 
           <Link
-            to="/shop"
+            href="/shop"
             className="text-xs font-bold uppercase tracking-wider text-[#1D3528] hover:underline"
           >
             View All →
@@ -58,8 +60,7 @@ export function BestSellersSection() {
               >
                 {/* Product Image inside Soft Sage Green Aura Backdrop */}
                 <Link
-                  to="/shop/$slug"
-                  params={{ slug: prod.slug }}
+                  href={`/shop/${prod.slug}`}
                   className="relative w-full aspect-square flex items-center justify-center rounded-2xl overflow-hidden mb-4"
                 >
                   {/* The Circular / Arched Sage Aura */}
@@ -85,7 +86,7 @@ export function BestSellersSection() {
 
                 {/* Title */}
                 <h3 className="font-display text-base font-bold text-[#1D3528] line-clamp-1">
-                  <Link to="/shop/$slug" params={{ slug: prod.slug }} className="hover:underline">
+                  <Link href={`/shop/${prod.slug}`} className="hover:underline">
                     {prod.name}
                   </Link>
                 </h3>

@@ -1,32 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { MessageCircle, MapPin, Phone, Clock, Truck, ShieldCheck, Sparkles, Send, ExternalLink, CheckCircle2 } from "lucide-react";
+"use client";
+
+import { MessageCircle, MapPin, Phone, Clock, Truck, Sparkles, ExternalLink } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
 import { SITE, whatsappLink } from "@/lib/site-config";
 
-export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact Us & Store Location — Sasyadhara Farms, KR Puram, Bangalore" },
-      {
-        name: "description",
-        content:
-          "Visit Sasyadhara Farms store near Lake Montfort School, KR Puram, Bangalore or order directly via WhatsApp/Phone: 9866125836 / 8618717644. Free doorstep delivery under 5km.",
-      },
-      { property: "og:title", content: "Contact & Store Location — Sasyadhara Farms" },
-      {
-        property: "og:description",
-        content: "KR Puram store and doorstep ordering: 9866125836 / 8618717644.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: ContactPage,
-});
-
-function ContactPage() {
+export default function ContactPage() {
   const [inquiryType, setInquiryType] = useState("Place New Order");
   const [form, setForm] = useState({ name: "", phone: "", items: "" });
   const [error, setError] = useState("");
@@ -79,12 +59,14 @@ function ContactPage() {
   const deliveryRules = [
     {
       title: "Within 5 KM of Store",
-      detail: "Free doorstep delivery on minimum order of 2 Litres (KR Puram, Seegehalli, Kodigehalli, Kurudusonnenahalli).",
+      detail:
+        "Free doorstep delivery on minimum order of 2 Litres (KR Puram, Seegehalli, Kodigehalli, Kurudusonnenahalli).",
       badge: "FREE DELIVERY",
     },
     {
       title: "Across Greater Bangalore",
-      detail: "50% of shipping charges absorbed by Sasyadhara Farms on min. 2 Litres order (Whitefield, Indiranagar, HSR, Koramangala, etc.).",
+      detail:
+        "50% of shipping charges absorbed by Sasyadhara Farms on min. 2 Litres order (Whitefield, Indiranagar, HSR, Koramangala, etc.).",
       badge: "50% SUBSIDIZED",
     },
     {
@@ -101,7 +83,8 @@ function ContactPage() {
         <div
           className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 h-[450px] w-[700px] rounded-full blur-3xl opacity-40"
           style={{
-            background: "radial-gradient(circle, rgba(212, 178, 118, 0.35) 0%, rgba(209, 224, 203, 0.25) 50%, transparent 75%)",
+            background:
+              "radial-gradient(circle, rgba(212, 178, 118, 0.35) 0%, rgba(209, 224, 203, 0.25) 50%, transparent 75%)",
           }}
           aria-hidden="true"
         />
@@ -192,7 +175,12 @@ function ContactPage() {
 
               {/* Inquiry Type Pills */}
               <div className="mt-6 flex flex-wrap gap-2">
-                {["Place New Order", "Price & Stock Question", "Store Directions", "Bulk & Corporate Order"].map((type) => (
+                {[
+                  "Place New Order",
+                  "Price & Stock Question",
+                  "Store Directions",
+                  "Bulk & Corporate Order",
+                ].map((type) => (
                   <button
                     key={type}
                     type="button"
@@ -252,9 +240,7 @@ function ContactPage() {
                   />
                 </div>
 
-                {error && (
-                  <p className="text-xs font-bold text-red-600">{error}</p>
-                )}
+                {error && <p className="text-xs font-bold text-red-600">{error}</p>}
 
                 <Button
                   type="submit"
@@ -281,7 +267,10 @@ function ContactPage() {
 
                 <div className="space-y-4">
                   {deliveryRules.map((rule) => (
-                    <div key={rule.title} className="rounded-2xl bg-white/10 p-4 border border-white/10 space-y-1">
+                    <div
+                      key={rule.title}
+                      className="rounded-2xl bg-white/10 p-4 border border-white/10 space-y-1"
+                    >
                       <div className="flex items-center justify-between">
                         <span className="font-display font-bold text-white text-sm">
                           {rule.title}
@@ -290,9 +279,7 @@ function ContactPage() {
                           {rule.badge}
                         </span>
                       </div>
-                      <p className="text-xs text-[#D0DED4] leading-relaxed">
-                        {rule.detail}
-                      </p>
+                      <p className="text-xs text-[#D0DED4] leading-relaxed">{rule.detail}</p>
                     </div>
                   ))}
                 </div>
@@ -316,9 +303,7 @@ function ContactPage() {
                   asChild
                   className="rounded-full bg-[#1D3528] text-white text-xs font-bold hover:bg-[#274737]"
                 >
-                  <a href={`tel:${SITE.phone.replace(/[^0-9+]/g, "")}`}>
-                    Call Store
-                  </a>
+                  <a href={`tel:${SITE.phone.replace(/[^0-9+]/g, "")}`}>Call Store</a>
                 </Button>
               </div>
             </div>

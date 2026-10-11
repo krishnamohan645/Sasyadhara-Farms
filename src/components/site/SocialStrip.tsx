@@ -40,7 +40,7 @@ export function SocialStrip() {
               className="group relative aspect-square overflow-hidden rounded-2xl border border-[#E5DFD3] shadow-xs bg-[#EDE8DD]"
             >
               <img
-                src={t.img}
+                src={(typeof t.img === "string" ? t.img : (t.img as { src: string })?.src) as string}
                 alt={t.alt}
                 width={400}
                 height={400}

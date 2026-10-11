@@ -1,34 +1,22 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { MessageCircle, Droplets, Sparkles, ShieldCheck, Sun, CheckCircle2, XCircle, ArrowRight } from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { MessageCircle, Droplets, Sparkles, CheckCircle2, XCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
 import { whatsappLink } from "@/lib/site-config";
 import heroMustard from "@/assets/hero-mustard-pedestal.jpg";
 import heroGhee from "@/assets/hero-ghee-pedestal.jpg";
-import greenStage from "@/assets/green-feature-pedestal.jpg";
 
-export const Route = createFileRoute("/process")({
-  head: () => ({
-    meta: [
-      { title: "Our Process — Sasyadhara Farms | Cold Wood Press & Vedic Bilona" },
-      {
-        name: "description",
-        content:
-          "Learn how Sasyadhara Farms extracts cold wood-pressed Mara Chekku oils below 40°C and hand-churns Vedic Bilona desi ghee in KR Puram, Bangalore.",
-      },
-      { property: "og:title", content: "Our Process — Sasyadhara Farms" },
-      {
-        property: "og:description",
-        content: "Traditional cold wood pressing and Vedic Bilona curd-churned ghee extraction.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: ProcessPage,
-});
+export const metadata: Metadata = {
+  title: "Our Process — Sasyadhara Farms | Cold Wood Press & Vedic Bilona",
+  description:
+    "Learn how Sasyadhara Farms extracts cold wood-pressed Mara Chekku oils below 40°C and hand-churns Vedic Bilona desi ghee in KR Puram, Bangalore.",
+};
 
-function ProcessPage() {
+export default function ProcessPage() {
+  const heroMustardSrc = typeof heroMustard === "string" ? heroMustard : (heroMustard as { src: string })?.src || heroMustard;
+  const heroGheeSrc = typeof heroGhee === "string" ? heroGhee : (heroGhee as { src: string })?.src || heroGhee;
+
   const oilSteps = [
     {
       num: "01",
@@ -115,7 +103,8 @@ function ProcessPage() {
         <div
           className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 h-[450px] w-[700px] rounded-full blur-3xl opacity-40"
           style={{
-            background: "radial-gradient(circle, rgba(209, 224, 203, 0.5) 0%, rgba(212, 178, 118, 0.25) 50%, transparent 75%)",
+            background:
+              "radial-gradient(circle, rgba(209, 224, 203, 0.5) 0%, rgba(212, 178, 118, 0.25) 50%, transparent 75%)",
           }}
           aria-hidden="true"
         />
@@ -163,7 +152,7 @@ function ProcessPage() {
             <div className="lg:col-span-6 flex justify-center">
               <div className="relative w-full max-w-[460px] aspect-square rounded-[2.5rem] overflow-hidden shadow-soft border border-[#E5DFD3] bg-[#EBE7DD]">
                 <img
-                  src={heroMustard}
+                  src={heroMustardSrc as string}
                   alt="Sasyadhara Farms cold wood pressed oil bottle"
                   width={700}
                   height={700}
@@ -202,7 +191,7 @@ function ProcessPage() {
             <div className="lg:col-span-6 flex justify-center order-2 lg:order-1">
               <div className="relative w-full max-w-[460px] aspect-square rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10">
                 <img
-                  src={heroGhee}
+                  src={heroGheeSrc as string}
                   alt="Sasyadhara Farms Vedic Bilona Cow Ghee on limestone pedestal"
                   width={700}
                   height={700}
@@ -310,7 +299,7 @@ function ProcessPage() {
               size="lg"
               className="rounded-full bg-[#1D3528] text-white px-8 py-6 text-sm font-bold hover:bg-[#274737] shadow-sm hover:scale-105 transition-all"
             >
-              <Link to="/#price-list" className="flex items-center gap-2">
+              <Link href="/#price-list" className="flex items-center gap-2">
                 <span>View Full Price List</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>

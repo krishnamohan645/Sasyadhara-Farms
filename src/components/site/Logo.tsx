@@ -9,7 +9,13 @@ export function Logo({ className }: { className?: string }) {
         className,
       )}
     >
-      <img src={logo} alt="Sasyadhara Farms logo" width={640} height={640} className="h-full w-full object-contain" />
+      <img
+        src={typeof logo === "string" ? logo : logo.src}
+        alt="Sasyadhara Farms logo"
+        width={640}
+        height={640}
+        className="h-full w-full object-contain"
+      />
     </span>
   );
 }
